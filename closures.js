@@ -15,7 +15,8 @@ function outer() {
   another variable called 'inner'. */
   
   // Code Here
-  
+  var inner = outer();
+  inner();
   //Once you do that, invoke inner.
   
   //Code Here
@@ -51,7 +52,8 @@ function outer() {
   */
   
     //Code Here
-  
+  var callJake = callFriend('Jake')
+  callJake('4355559248')
   
   
   
@@ -69,13 +71,19 @@ function outer() {
   properly. */
   
   //Code Here
+  function makeCounter(count){
+    var count = 0
+    return function(){
+      return ++count;
+    }
+  }
   
   //Uncomment this once you make your function
-  //   var count = makeCounter();
-  //   count(); // 1
-  //   count(); // 2
-  //   count(); // 3
-  //   count(); // 4
+    var count = makeCounter();
+    count(); // 1
+    count(); // 2
+    count(); // 3
+    count(); // 4
   
   
   
@@ -102,20 +110,32 @@ function outer() {
   
   function counterFactory(value) {
   
-    // Code here.
-  
-  
     return {
-
+      inc:function(){
+        return ++value;
+       
+      },
+      dec:function(){
+        return --value;
+        
+      }
     }
-  }
+    }
+
+  
+  
+  
+  //   return {
+
+  //   }
+  // }
   
   
   counter = counterFactory(10);
-  // counter.inc() // 11
-  // counter.inc() // 12
-  // counter.inc() // 13
-  // counter.dec() // 12
+  counter.inc() // 11
+  counter.inc() // 12
+  counter.inc() // 13
+  counter.dec() // 12
   
   
   
