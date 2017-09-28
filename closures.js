@@ -159,13 +159,15 @@ function outer() {
   
   function motivation(firstname, lastname) {
   
-    var welcomeText = 'You\'re doing awesome, keep it up ';
+    var welcomeText = "You're doing awesome, keep it up ";
   
     // code message function here.
-  
+    function message(){
+       return welcomeText + firstname + " " + lastname + ".";
+    }
   
     //Uncommment this to return the value of your message function
-    //return message;
+    return message;
   
   }
   
@@ -203,10 +205,15 @@ function outer() {
     // Anything that is being returned is made public and can be invoked from
     // outside our lexical scope
     return {
-      // Code here.
+      publicMethod:function(){
+        return privateMethod();
+      }
     };
   
   })();
+
+  module.publicMethod();
+  
   
   
   
@@ -216,13 +223,21 @@ function outer() {
 
   /****** INSTRUCTIONS PROBLEM 7 ******/
   /* Here we have a function named secretNumber that has a secret number. Inside
-  the return object, create two methods called addToSecret and takeAwayFromSecret. addToSecret should have a parameter that is added to the secret number returning the updated secret number. takeAwayFromSecret should have a parameter that takes away from the secret number returning the updated secret number. */
+  the return object, create two methods called addToSecret and takeAwayFromSecret. addToSecret should have a parameter
+  that is added to the secret number returning the updated secret number. takeAwayFromSecret should have a parameter that 
+  takes away from the secret number 
+  returning the updated secret number. */
 
   function secretNumber() {
     var secret = 143;
 
     return {
-      // Code here
+      addToSecret: function(num){
+        return secret += num;
+      },
+      takeAwayFromSecret: function(num){
+        return secret -= num;
+      }
     }
   }
   
@@ -250,10 +265,12 @@ function outer() {
   
   function timeOutCounter() {
     for (var i = 0; i <= 5; i++) {
-      setTimeout(function() {
-          console.log(i)
-      }, i * 1000)
+     setTimeout((function(index) {
+       return function(){
+          console.log(index)
+      }})(i), i * 1000)
     }
+  
   }
   timeOutCounter();
   
